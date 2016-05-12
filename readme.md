@@ -1,4 +1,4 @@
-/*
+
 
 什么是angular
 
@@ -254,5 +254,3 @@ directive( 'myDirective', function () {
 别用jQuery，甚至都别引用它，它会阻碍你，当你有个问题已经知道怎么用jQuery来解决的时候，
 在你将手伸向$的时候，试试能不能在Angular.js的规范内解决。
 
-
-*/
