@@ -2,7 +2,7 @@
 
 什么是angular
 
-AngularJS 是一个 JavaScript 框架。它可通过 <script> 标签添加到 HTML 页面。
+AngularJS 是一个 JavaScript 框架。它可通过 script 标签添加到 HTML 页面。
 AngularJS 通过 指令 扩展了 HTML，且通过 表达式 绑定数据到 HTML。
 什么是指令：ng-app ,ng-init 
 什么是表达式: {{2+2 > 3}}
