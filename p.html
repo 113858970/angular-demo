@@ -1,0 +1,74 @@
+<!doctype html>
+<html ng-app="module">
+<head><meta charset="utf-8"></head>
+<title>directive and directive通信</title>
+<style>
+  div{height: 50px; line-height: 50px}
+</style>
+<body>
+  <div>
+    <superman strength>力量</superman>
+  </div>
+
+  <div>
+    <superman strength speed>力量 + 敏捷</superman>
+  </div>
+
+  <div>
+    <superman strength speed light>力量 + 敏捷 + 发光</superman>
+  </div>
+</body>
+<script src="./framework/1.3.0.14/angular.js"></script>
+<script>
+  var module = angular.module('module',[]);
+  module.directive('superman',function(){ 
+    return { 
+      scope:{},
+      restrict:'AE',
+      controller:function($scope){ 
+        $scope.abilities = [];
+        this.addStrength = function(){ 
+          $scope.abilities.push('strength')
+        };
+        this.addSpeed = function() {
+                  $scope.abilities.push("speed");
+              };
+        this.addLight = function() {
+            $scope.abilities.push("light");
+        };
+      },
+      link:function(scope,element,attrs){ 
+        element.bind('mouseover',function(){ 
+          console.log(scope.abilities)
+        })
+      }
+
+    }
+  });
+
+  module.directive('strength',function(){ 
+    return {
+      require:'^superman',
+      link:function(scope,element,attrs,superCtrl){ 
+        superCtrl.addStrength();
+      }
+    }
+  });
+  module.directive("speed", function() {
+      return {
+          require: '^superman',
+          link: function(scope, element, attrs, supermanCtrl) {
+              supermanCtrl.addSpeed();
+          }
+      }
+  });
+  module.directive("light", function() {
+      return {
+          require: '^superman',
+          link: function(scope, element, attrs, supermanCtrl) {
+              supermanCtrl.addLight();
+          }
+      }
+  });
+</script>
+</html>

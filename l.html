@@ -1,0 +1,33 @@
+<!doctype html>
+<html ng-app="module">
+<head><meta charset="utf-8"></head>
+<title>Isolate scope At</title>
+<body>
+  <div ng-controller = "MyCtrl">
+  	<input type="text" ng-model="ctrlFlavor">
+    <drink flavor = "{{ctrlFlavor}}"></drink>
+  </div>
+</body>
+<script src="./framework/1.3.0.14/angular.js"></script>
+<script>
+var module = angular.module("module", []);
+module.controller('MyCtrl', function($scope){
+  $scope.ctrlFlavor="name";
+})
+module.directive("drink", function() {
+    return {
+      restrict:'AE',
+        scope:{
+          a:'@flavor'
+        },
+        template:'<input type="text" ng-model="a">'
+    }
+});
+
+
+//@或@attr: 单向数据绑定
+
+
+
+</script>
+</html>

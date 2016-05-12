@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body ng-app="module">
+<hello></hello>
+</body>
+<script src="./framework/1.3.0.14/angular.js"></script>
+<script>
+  var module = angular.module('module',[]);
+  module.directive('hello',function(){ 
+    return { 
+      restrict:'AEMC',
+      template:'<p>hello,angular</p>',
+      replace:true
+    }
+  })
+
+/*
+directive总结
+
+var Directives = angular.module('Directives', []);  
+  
+Directives.directive('directiveName', function($inject) {  
+  
+   return {  
+   　　template: '<div></div>',  //template templateUrl => i.html
+  
+   　　replace: false,  
+  
+   　　transclude: true,  //j.html
+  
+   　　restrict: 'E',  
+  
+   　　scope: { ... },  
+       
+       controller: function($scope, $element){ .... },     
+  
+   　  compile: function(tElement, tAttrs, transclude) {  
+   　　　　return {  
+   　　　　　　pre: function preLink(scope, iElement, iAttrs, controller) { ... },  
+   　　　　　　post: function postLink(scope, iElement, iAttrs, controller) { ... }  
+   　　　　}  
+   　　},  
+  
+   　　link: function(scope, iElement, iAttrs) { ... }  
+   };  
+}); 
+
+
+restrict 值可以是以下几种:
+
+    E 只限元素名使用 <hello></hello>
+    A 只限属性使用    <div hello></div>
+    C 只限类名使用    <div class="hello"></div>
+    M 只限注释使用    <!-- 指令: hello -->
+
+
+
+transclude=》指令之间互相嵌套
+
+
+scope: {} 将创建一个新的、独立(isolate)的scope。”isolate” scope与一般的scope的区别在于它不是通过原型继承于父scope的。
+  这对于创建可复用的组件是很有帮助的，可以有效防止读取或者修改父级scope的数据。
+  
+  k.html
+
+  @  => l.html
+
+  =  => n.html
+
+  &  => m.html
+
+
+
+controller - controller 构造函数。
+  controller其他directive通过指定名称的require进行共享。
+  这将允许directive之间相互沟通，增强相互之间的行为。controller默认注入了以下本地对象：
+
+  $scope - 与当前元素结合的scope
+
+  $element - 当前的元素
+
+  $attrs - 当前元素的属性对象
+
+
+
+require - 请求另外的controller
+
+  ? - 不要抛出异常。这使这个依赖变为一个可选项。
+
+  ^ - 允许查找父元素的controller
+
+o.html p.html (实例directive与directive ， directive与controller通信)
+
+link
+
+
+    scope – 一般就是父controller的scope。
+
+    elem – 当前对象，如果你在引入AngularJS之前引入了jQuery，
+    那么这个元素就是jQuery元素，而不是angular.element元素。由于这个元素已经被jQuery/jQLite包装了，
+    所以我们就在进行DOM操作的时候就不需要再使用 $()来进行包装。
+
+    attr – 一个包含了指令所在元素的属性的标准化的参数对象。
+
+    ctrl:引用的父directive，需要和require配合使用
+  
+注:link函数主要用来为DOM元素添加事件监听、监视模型属性变化、以及更新DOM。
+
+o.html p.html (实例directive与directive ， directive与controller通信)
+
+
+
+
+compile函数
+
+
+compile 函数在 link 函数被执行之前用来做一些DOM改造。它接收下面的参数：
+
+    tElement – 指令所在的元素
+    attrs – 元素上赋予的参数的标准化列表
+
+要注意的是 compile 函数不能访问 scope，并且必须返回一个 link 函数。
+但是如果没有设置 compile 函数，你可以正常地配置 link 函数，
+（有了compile，就不能用link，link函数由compile返回）。
+
+
+注：大多数的情况下，你只需要使用 link 函数。
+
+
+
+*/
+
+</script>
+</html>

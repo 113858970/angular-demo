@@ -1,0 +1,33 @@
+<!doctype html>
+<html ng-app="Mymodule">
+<head><meta charset="utf-8"></head>
+<title>Isolate scope equal</title>
+<body>
+  <div ng-controller="MyCtrl">
+    Ctrl:<input type="text" ng-model="ctrl">
+    <br>
+    <br>
+    Directive:<drink flavor="ctrl"></drink>
+  </div>
+
+</body>
+<script src="./framework/1.3.0.14/angular.js"></script>
+<script>
+  var module = angular.module('Mymodule',[]);
+  module.controller("MyCtrl",function($scope){ 
+    $scope.ctrl = "ctrl";
+  })
+  module.directive("drink",function(){ 
+    return { 
+      restrict:"AE",
+      scope:{ 
+        a:'=flavor'
+      },
+      template:'<input type="text" ng-model="a">'
+    }
+  })
+  /*
+=或=attr: 在本地scope属性与parent scope属性之间设置双向的绑定。
+  */
+</script>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<body ng-app="module">
+<div ng-controller="controller"  >
+  <p >{{msg}}</p>
+  <br>
+  <input type="text" ng-model="msg" >
+</div>
+</body>
+<script src="./framework/1.3.0.14/angular.js"></script>
+<script>
+  var module = angular.module('module',[]);
+  module.controller('controller',function($scope){ 
+    $scope.msg = "a";
+    
+  })
+</script>
+</html>

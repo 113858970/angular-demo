@@ -1,0 +1,62 @@
+<!doctype html>
+<html ng-app="module">
+<head><meta charset="utf-8"></head>
+<title>directive and controller</title>
+<body>
+  <div ng-controller="contro1" ng-mouseover = "load1()">controller</div>
+  <div ng-controller="contro2" ng-mouseover = "load2()">controller</div>
+  <div ng-controller="contro3">
+    <loader actions="load3()">controller and directive</loader>
+  </div>
+  <div ng-controller="contro4">
+    <loader actions="load4()">controller and directive</loader>
+  </div>
+</body>
+<script src="./framework/1.3.0.14/angular.js"></script>
+<script>
+  var module = angular.module('module',[]);
+  module.controller('contro1',function($scope){ 
+    $scope.load1 = function(){ 
+      console.log('1')
+    }
+  });
+  module.controller('contro2',function($scope){ 
+    $scope.load2 = function(){ 
+      console.log('2')
+    }
+  });
+
+
+  module.controller('contro3',function($scope){ 
+    $scope.load3 = function(){ 
+      console.log('3')
+    }
+  });
+  module.controller('contro4',function($scope){ 
+    $scope.load4 = function(){ 
+      console.log('4')
+    }
+  });
+
+  module.directive('loader',function(){ 
+    return { 
+      restrict:'AE',
+      link:function(scope,element,attrs){ 
+        element.bind('mouseover',function(){ 
+          //直接调用方法
+          //scope.load3();
+          //scope.$apply("load3()");
+
+          //指令内部，不同控制器调用不同的方法
+          scope.$apply(attrs.actions)
+        });
+
+        element.bind('click',function(){ 
+          alert('123')
+        })
+        
+      }
+    }
+  })
+</script>
+</html>

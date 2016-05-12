@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body ng-app="mymodule">
+<div ng-controller="controller">
+  {{msg}}
+</div>
+</body>
+<script src="./framework/1.3.0.14/angular.js"></script>
+<script>
+  var module = angular.module('mymodule',[]);//[] => 填写依赖项
+  module.controller('controller',function($scope){ 
+    $scope.msg = "a";
+  })
+</script>
+</html>

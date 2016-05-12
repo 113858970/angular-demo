@@ -1,0 +1,38 @@
+<!doctype html>
+<html ng-app="module">
+<head><meta charset="utf-8"></head>
+<title>Isolate scope & => 不是很懂</title>
+<body>
+  <div ng-controller="MyCtrl">
+    <greeting greet="sayHello(name)"></greeting>
+    <greeting greet="sayHello(name)"></greeting>
+    <greeting greet="sayHello(name)"></greeting>
+  </div>
+</body>
+<script src="./framework/1.3.0.14/angular.js"></script>
+<script>
+var myModule = angular.module("module", []);
+myModule.controller('MyCtrl',  function($scope){
+  $scope.sayHello=function(name){
+    alert("Hello "+name);
+  }
+
+  //$scope.Hello = 'hello'
+})
+myModule.directive("greeting", function() {
+    return {
+      restrict:'AE',
+        scope:{
+          greet:'&'//传递一个来自父scope的函数，稍后调用
+        },
+        template:'<input type="text" ng-model="userName" /><br/>'+
+             '<button ng-click="greet({name:userName})">Greeting</button><br/>'
+    }
+});
+
+/*
+
+*/
+
+</script>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<body ng-app="module">
+<div ng-controller="controller"  >
+  <p ng-click = 'click()' ng-mouseenter = 'mouseenter()'>{{msg}}</p>
+  <br>
+  <input type="text" ng-model="msg" ng-copy='copy()'>
+</div>
+</body>
+<script src="./framework/1.3.0.14/angular.js"></script>
+<script>
+  var module = angular.module('module',[]);
+  module.controller('controller',function($scope){ 
+    $scope.msg = "a";
+    $scope.click = function(){
+      console.log('点击')
+    }
+    $scope.mouseenter = function(){ 
+      console.log('进入')
+    }
+    $scope.copy=function(){
+      console.log('拷贝')
+    }
+  })
+</script>
+</html>

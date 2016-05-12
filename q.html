@@ -1,0 +1,52 @@
+<!doctype html>
+<html ng-app="module">
+<head><meta charset="utf-8"></head>
+<title></title>
+<body>
+<div ng-controller="costCtrl">
+
+数量: <input type="number" ng-model="quantity">
+价格: <input type="number" ng-model="price">
+
+<p>总价 = {{ (quantity * price) | currency }}</p>
+
+</div>
+
+<div ng-controller="country">
+    <ul>
+      <li ng-repeat="x in names | orderBy:'country'">
+        {{ x.name + ', ' + x.country }}
+      </li>
+    </ul>
+</div>
+</body>
+<script src="./framework/1.3.0.14/angular.js"></script>
+<script>
+var app = angular.module('module', []);
+app.controller('costCtrl', function($scope) {
+    $scope.quantity = 1;
+    $scope.price = 9.99;
+});
+
+app.controller('country', function($scope) {
+    $scope.names = [
+        {name:'Jani',country:'Norway'},
+        {name:'Hege',country:'Sweden'},
+        {name:'Kai',country:'Denmark'}
+    ];
+});
+
+
+
+
+/*
+currency    格式化数字为货币格式。
+filter      从数组项中选择一个子集。
+lowercase   格式化字符串为小写。
+orderBy     根据某个表达式排列数组。
+uppercase   格式化字符串为大写。
+*/
+
+
+</script>
+</html>
